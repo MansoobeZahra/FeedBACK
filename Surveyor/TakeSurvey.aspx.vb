@@ -1,4 +1,4 @@
-Imports System.Data
+﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 Imports System.Web.UI
@@ -44,7 +44,7 @@ Public Class Surveyor_TakeSurvey
                 End If
                 surveyTitle.InnerText = dr("Title").ToString()
                 surveyDesc.InnerText  = If(IsDBNull(dr("Description")), "", dr("Description").ToString())
-                anonBadge.InnerText   = If(CBool(dr("IsAnonymous")), "🔒 Anonymous Survey", "👤 Identified Survey")
+                anonBadge.InnerText   = If(CBool(dr("IsAnonymous")), " Anonymous Survey", " Identified Survey")
                 lnkResults2.HRef = "../Results/SurveyResults.aspx?sid=" & _surveyID
             End Using
 
@@ -200,3 +200,4 @@ Public Class Surveyor_TakeSurvey
         End Try
     End Sub
 End Class
+

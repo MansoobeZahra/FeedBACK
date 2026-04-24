@@ -1,11 +1,11 @@
-<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.master.vb" Inherits="Site" %>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.master.vb" Inherits="Site" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="FeedBACK — Online Survey Platform" />
-    <title>FeedBACK — <asp:ContentPlaceHolder ID="PageTitle" runat="server">Survey</asp:ContentPlaceHolder></title>
+    <meta name="description" content="FeedBACK - Online Survey Platform" />
+    <title>FeedBACK - <asp:ContentPlaceHolder ID="PageTitle" runat="server">Survey</asp:ContentPlaceHolder></title>
     <link rel="stylesheet" href="~/Styles/Site.css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
@@ -15,7 +15,7 @@
         <!-- ===== NAVBAR ===== -->
         <nav class="navbar">
             <a href="~/Default.aspx" runat="server" class="navbar-brand">
-                <span class="brand-icon">📋</span>
+                <span class="brand-icon"></span>
                 FeedBACK
             </a>
 
@@ -29,7 +29,7 @@
                     <span id="userNameSpan" runat="server">User</span>
                     <span class="badge badge-blue" id="roleSpan" runat="server" style="margin-left:.25rem;"></span>
                 </div>
-                <asp:Button ID="btnLogout" runat="server" Text="⬅ Logout" CssClass="btn btn-logout"
+                <asp:Button ID="btnLogout" runat="server" Text=" Logout" CssClass="btn btn-logout"
                     OnClick="btnLogout_Click" Visible="false" />
             </div>
         </nav>
@@ -40,3 +40,4 @@
     </form>
 </body>
 </html>
+

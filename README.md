@@ -1,14 +1,14 @@
-# 📋 FeedBACK — Online Survey Platform
-**Internet Application Development — Lab 9**
+﻿#  FeedBACK - Online Survey Platform
+**Internet Application Development - Lab 9**
 
-ASP.NET Web Forms · VB.NET · SQL Server · Three-Role Survey System
+ASP.NET Web Forms - VB.NET - SQL Server - Three-Role Survey System
 
 ---
 
 ## Quick Start
 1. Run `Database/SurveyDB.sql` in SSMS
 2. Update connection string in `Web.config` (`Data Source=.\SQLEXPRESS`)
-3. Open `FeedBACK.sln` in Visual Studio → Press F5
+3. Open `FeedBACK.sln` in Visual Studio -> Press F5
 
 ## Default Logins
 | Role | Username | Password |
@@ -23,4 +23,5 @@ ASP.NET Web Forms · VB.NET · SQL Server · Three-Role Survey System
 - Anonymous or identified survey mode (set by Admin)
 - Bar-chart results analysis
 - Forms authentication + folder-level authorization
+
 

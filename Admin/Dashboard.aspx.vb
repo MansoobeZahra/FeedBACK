@@ -1,4 +1,4 @@
-Imports System.Data
+﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -37,3 +37,4 @@ Public Class Admin_Dashboard
         Return cmd.ExecuteScalar().ToString()
     End Function
 End Class
+

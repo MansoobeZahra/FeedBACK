@@ -1,10 +1,10 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Register.aspx.vb" Inherits="Register" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Register.aspx.vb" Inherits="Register" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FeedBACK — Register</title>
+    <title>FeedBACK - Register</title>
     <link rel="stylesheet" href="Styles/Site.css" />
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="login-card" style="max-width:520px;">
 
         <div class="login-header">
-            <div class="logo">📋</div>
+            <div class="logo"></div>
             <h1>Create Account</h1>
             <p>Join FeedBACK and start surveying today</p>
         </div>
@@ -21,7 +21,7 @@
         <div class="login-body">
 
             <asp:Panel ID="pnlError" runat="server" Visible="false">
-                <div class="alert alert-danger">⚠ <asp:Literal ID="litError" runat="server" /></div>
+                <div class="alert alert-danger"> <asp:Literal ID="litError" runat="server" /></div>
             </asp:Panel>
 
             <div class="form-row">
@@ -70,7 +70,7 @@
                 </asp:DropDownList>
             </div>
 
-            <asp:Button ID="btnRegister" runat="server" Text="Create Account →"
+            <asp:Button ID="btnRegister" runat="server" Text="Create Account ->"
                 CssClass="btn btn-danger btn-full btn-lg"
                 OnClick="btnRegister_Click" style="margin-top:.5rem;" />
 
@@ -83,3 +83,4 @@
 </form>
 </body>
 </html>
+

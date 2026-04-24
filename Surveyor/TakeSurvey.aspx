@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
     CodeFile="TakeSurvey.aspx.vb" Inherits="Surveyor_TakeSurvey" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">Take Survey</asp:Content>
@@ -53,7 +53,7 @@
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.3rem;">
             <span class="badge" style="background:rgba(255,255,255,.2);color:white;" id="anonBadge" runat="server"></span>
         </div>
-        <h2 id="surveyTitle" runat="server">Loading…</h2>
+        <h2 id="surveyTitle" runat="server">Loading</h2>
         <p id="surveyDesc" runat="server"></p>
         <div class="progress-bar-wrap">
             <div class="progress-bar-fill" id="progressFill" runat="server" style="width:100%;"></div>
@@ -61,18 +61,18 @@
     </div>
 
     <asp:Panel ID="pnlError" runat="server" Visible="false">
-        <div class="alert alert-danger">⚠ <asp:Literal ID="litError" runat="server" /></div>
+        <div class="alert alert-danger"> <asp:Literal ID="litError" runat="server" /></div>
     </asp:Panel>
 
     <asp:Panel ID="pnlAlreadyDone" runat="server" Visible="false">
         <div class="card">
             <div class="card-body" style="text-align:center;padding:3rem;">
-                <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+                <div style="font-size:3rem;margin-bottom:1rem;">(Active)</div>
                 <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:.5rem;">Already Submitted</h3>
                 <p style="color:var(--muted);margin-bottom:1.5rem;">You have already completed this survey.</p>
                 <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-                    <a href="Dashboard.aspx" class="btn btn-outline">← Back to Surveys</a>
-                    <a id="lnkResults2" runat="server" href="#" class="btn btn-warning">📊 View Results</a>
+                    <a href="Dashboard.aspx" class="btn btn-outline"><- Back to Surveys</a>
+                    <a id="lnkResults2" runat="server" href="#" class="btn btn-warning"> View Results</a>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
         <asp:PlaceHolder ID="phQuestions" runat="server" />
 
         <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit Survey ✓"
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit Survey "
                 CssClass="btn btn-danger btn-lg"
                 OnClick="btnSubmit_Click"
                 OnClientClick="return validateForm();" />
@@ -109,3 +109,4 @@ function validateForm() {
 }
 </script>
 </asp:Content>
+

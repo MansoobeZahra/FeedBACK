@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
     CodeFile="CreateSurvey.aspx.vb" Inherits="Builder_CreateSurvey" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">Create Survey</asp:Content>
@@ -11,12 +11,12 @@
     </div>
 
     <asp:Panel ID="pnlError" runat="server" Visible="false">
-        <div class="alert alert-danger">⚠ <asp:Literal ID="litError" runat="server" /></div>
+        <div class="alert alert-danger"> <asp:Literal ID="litError" runat="server" /></div>
     </asp:Panel>
 
     <div class="card">
         <div class="card-header">
-            <h2><span class="icon red">📋</span> Survey Details</h2>
+            <h2><span class="icon red"></span> Survey Details</h2>
         </div>
         <div class="card-body">
 
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label class="form-label">Description</label>
                 <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"
-                    CssClass="form-control" placeholder="Brief description of this survey…"
+                    CssClass="form-control" placeholder="Brief description of this survey"
                     Rows="3" MaxLength="500" />
             </div>
 
@@ -43,7 +43,7 @@
             </div>
 
             <div style="display:flex;gap:1rem;margin-top:1.5rem;">
-                <asp:Button ID="btnCreate" runat="server" Text="Create Survey &amp; Add Questions →"
+                <asp:Button ID="btnCreate" runat="server" Text="Create Survey &amp; Add Questions ->"
                     CssClass="btn btn-danger btn-lg" OnClick="btnCreate_Click" />
                 <a href="Dashboard.aspx" class="btn btn-outline btn-lg">Cancel</a>
             </div>
@@ -52,3 +52,4 @@
 
 </div>
 </asp:Content>
+

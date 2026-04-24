@@ -1,4 +1,4 @@
-Imports System.Data
+﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -6,7 +6,7 @@ Public Class Register
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        ' Already logged in → redirect
+        ' Already logged in -> redirect
         If Session("UserID") IsNot Nothing Then
             Response.Redirect("~/Default.aspx")
         End If
@@ -47,3 +47,4 @@ Public Class Register
         End Try
     End Sub
 End Class
+

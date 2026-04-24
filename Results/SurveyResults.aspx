@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
     CodeFile="SurveyResults.aspx.vb" Inherits="Results_SurveyResults" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">Survey Results</asp:Content>
@@ -49,7 +49,7 @@
     <div class="survey-selector">
         <label class="form-label" style="margin:0;white-space:nowrap;font-size:.9rem;">Select Survey:</label>
         <asp:DropDownList ID="ddlSurvey" runat="server" CssClass="form-control" style="flex:1;min-width:240px;" />
-        <asp:Button ID="btnLoad" runat="server" Text="Load Results →"
+        <asp:Button ID="btnLoad" runat="server" Text="Load Results ->"
             CssClass="btn btn-danger" OnClick="btnLoad_Click" />
     </div>
 
@@ -76,7 +76,7 @@
 
         <asp:Panel ID="pnlNoData" runat="server" Visible="false">
             <div class="empty-state">
-                <div class="empty-icon">📊</div>
+                <div class="empty-icon"></div>
                 <h3>No Responses Yet</h3>
                 <p>No one has taken this survey yet. Share it with surveyors!</p>
             </div>
@@ -86,3 +86,4 @@
 
 </div>
 </asp:Content>
+

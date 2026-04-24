@@ -1,11 +1,11 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Login.aspx.vb" Inherits="Login" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Login.aspx.vb" Inherits="Login" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="FeedBACK — Sign in to your survey account" />
-    <title>FeedBACK — Login</title>
+    <meta name="description" content="FeedBACK - Sign in to your survey account" />
+    <title>FeedBACK - Login</title>
     <link rel="stylesheet" href="Styles/Site.css" />
 </head>
 <body>
@@ -15,9 +15,9 @@
 
         <!-- Header -->
         <div class="login-header">
-            <div class="logo">📋</div>
+            <div class="logo"></div>
             <h1>FeedBACK</h1>
-            <p>Online Survey Platform — Sign in to continue</p>
+            <p>Online Survey Platform - Sign in to continue</p>
         </div>
 
         <!-- Body -->
@@ -25,13 +25,13 @@
 
             <asp:Panel ID="pnlError" runat="server" Visible="false">
                 <div class="alert alert-danger">
-                    ⚠ <asp:Literal ID="litError" runat="server" />
+                     <asp:Literal ID="litError" runat="server" />
                 </div>
             </asp:Panel>
 
             <asp:Panel ID="pnlSuccess" runat="server" Visible="false">
                 <div class="alert alert-success">
-                    ✔ <asp:Literal ID="litSuccess" runat="server" />
+                    (Done) <asp:Literal ID="litSuccess" runat="server" />
                 </div>
             </asp:Panel>
 
@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label class="form-label" for="txtUsername">Username</label>
                 <div class="input-icon">
-                    <span class="icon">👤</span>
+                    <span class="icon"></span>
                     <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"
                         placeholder="Enter your username" ClientIDMode="Static" />
                 </div>
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label class="form-label" for="txtPassword">Password</label>
                 <div class="input-icon">
-                    <span class="icon">🔒</span>
+                    <span class="icon"></span>
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"
                         CssClass="form-control" placeholder="Enter your password" ClientIDMode="Static" />
                 </div>
@@ -62,14 +62,14 @@
             </div>
 
             <!-- Submit -->
-            <asp:Button ID="btnLogin" runat="server" Text="Sign In →" CssClass="btn btn-danger btn-full btn-lg"
+            <asp:Button ID="btnLogin" runat="server" Text="Sign In ->" CssClass="btn btn-danger btn-full btn-lg"
                 OnClick="btnLogin_Click" style="margin-top:.5rem;" />
 
             <!-- Divider -->
-            <div style="text-align:center;margin:1.25rem 0;color:#ccc;font-size:.85rem;">— or —</div>
+            <div style="text-align:center;margin:1.25rem 0;color:#ccc;font-size:.85rem;">- or -</div>
 
             <a href="Register.aspx" class="btn btn-outline btn-full">
-                ✨ Create New Account
+                 Create New Account
             </a>
         </div>
 
@@ -82,3 +82,4 @@
 </form>
 </body>
 </html>
+

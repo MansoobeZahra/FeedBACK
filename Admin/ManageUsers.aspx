@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
     CodeFile="ManageUsers.aspx.vb" Inherits="Admin_ManageUsers" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">Manage Users</asp:Content>
@@ -10,21 +10,21 @@
             <h1>Manage <span>Users</span></h1>
             <p>View, activate/deactivate users and control their roles.</p>
         </div>
-        <a href="../Register.aspx" class="btn btn-danger">➕ Add New User</a>
+        <a href="../Register.aspx" class="btn btn-danger">+ Add New User</a>
     </div>
 
     <asp:Panel ID="pnlMsg" runat="server" Visible="false">
-        <div class="alert alert-success">✔ <asp:Literal ID="litMsg" runat="server" /></div>
+        <div class="alert alert-success">(Done) <asp:Literal ID="litMsg" runat="server" /></div>
     </asp:Panel>
 
     <div class="card">
         <div class="card-header">
-            <h2><span class="icon blue">👥</span> All Users</h2>
+            <h2><span class="icon blue"></span> All Users</h2>
             <!-- Search -->
             <div style="display:flex;gap:.5rem;">
                 <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"
-                    placeholder="Search by name or username…" style="width:220px;" />
-                <asp:Button ID="btnSearch" runat="server" Text="🔍" CssClass="btn btn-outline"
+                    placeholder="Search by name or username" style="width:220px;" />
+                <asp:Button ID="btnSearch" runat="server" Text="" CssClass="btn btn-outline"
                     OnClick="btnSearch_Click" />
             </div>
         </div>
@@ -44,8 +44,8 @@
                         <asp:TemplateField HeaderText="Status">
                             <ItemTemplate>
                                 <%# If(CBool(Eval("IsActive")),
-                                    "<span class='badge badge-green'>● Active</span>",
-                                    "<span class='badge badge-gray'>● Inactive</span>") %>
+                                    "<span class='badge badge-green'>* Active</span>",
+                                    "<span class='badge badge-gray'>* Inactive</span>") %>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Actions">
@@ -55,7 +55,7 @@
                                     CommandArgument='<%# Eval("UserID") & "|" & Eval("IsActive") %>'
                                     CssClass='<%# If(CBool(Eval("IsActive")), "btn btn-sm btn-warning", "btn btn-sm btn-success") %>'
                                     OnClientClick="return confirm(&quot;Change user status?&quot;);">
-                                    <%# If(CBool(Eval("IsActive")), "⏸ Deactivate", "▶ Activate") %>
+                                    <%# If(CBool(Eval("IsActive")), " Deactivate", "> Activate") %>
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -67,3 +67,4 @@
 
 </div>
 </asp:Content>
+

@@ -1,4 +1,4 @@
-Imports System.Data
+﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -39,3 +39,4 @@ Public Class Builder_Dashboard
         Return New SqlCommand(sql, conn).ExecuteScalar().ToString()
     End Function
 End Class
+

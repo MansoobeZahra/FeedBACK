@@ -1,4 +1,4 @@
-Public Class DefaultPage
+﻿Public Class DefaultPage
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -15,3 +15,4 @@ Public Class DefaultPage
         End Select
     End Sub
 End Class
+

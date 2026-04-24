@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
     CodeFile="ManageQuestions.aspx.vb" Inherits="Builder_ManageQuestions" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">Manage Questions</asp:Content>
@@ -30,20 +30,20 @@
     <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
         <div>
             <h1>Manage <span>Questions</span></h1>
-            <p id="surveyTitleP" runat="server">Loading survey…</p>
+            <p id="surveyTitleP" runat="server">Loading survey</p>
         </div>
         <div style="display:flex;gap:.75rem;">
-            <a href="Dashboard.aspx" class="btn btn-outline">← Back</a>
-            <a id="lnkResults" runat="server" href="#" class="btn btn-warning">📊 View Results</a>
+            <a href="Dashboard.aspx" class="btn btn-outline"><- Back</a>
+            <a id="lnkResults" runat="server" href="#" class="btn btn-warning"> View Results</a>
         </div>
     </div>
 
     <!-- Success/Error -->
     <asp:Panel ID="pnlMsg" runat="server" Visible="false">
-        <div class="alert alert-success">✔ <asp:Literal ID="litMsg" runat="server" /></div>
+        <div class="alert alert-success">(Done) <asp:Literal ID="litMsg" runat="server" /></div>
     </asp:Panel>
     <asp:Panel ID="pnlError" runat="server" Visible="false">
-        <div class="alert alert-danger">⚠ <asp:Literal ID="litError" runat="server" /></div>
+        <div class="alert alert-danger"> <asp:Literal ID="litError" runat="server" /></div>
     </asp:Panel>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
@@ -51,7 +51,7 @@
         <!-- ===== ADD QUESTION FORM ===== -->
         <div class="card">
             <div class="card-header">
-                <h2><span class="icon blue">➕</span> Add Question</h2>
+                <h2><span class="icon blue">+</span> Add Question</h2>
             </div>
             <div class="card-body">
 
@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label class="form-label">Question Statement <span style="color:var(--red)">*</span></label>
                     <asp:TextBox ID="txtQuestion" runat="server" TextMode="MultiLine" Rows="3"
-                        CssClass="form-control" placeholder="Type your question here…" />
+                        CssClass="form-control" placeholder="Type your question here" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="txtQuestion"
                         Display="Dynamic" CssClass="field-error" ErrorMessage="Question text required." />
                 </div>
@@ -105,7 +105,7 @@
                 <!-- True/False info -->
                 <asp:Panel ID="pnlTF" runat="server" Visible="false">
                     <div class="alert alert-info">
-                        ℹ True / False options will be added automatically.
+                         True / False options will be added automatically.
                     </div>
                 </asp:Panel>
 
@@ -119,7 +119,7 @@
         <div>
             <div class="card">
                 <div class="card-header">
-                    <h2><span class="icon orange">❓</span> Questions
+                    <h2><span class="icon orange"></span> Questions
                         <span class="badge badge-blue" style="margin-left:.5rem;">
                             <asp:Literal ID="litQCount" runat="server">0</asp:Literal>
                         </span>
@@ -140,7 +140,7 @@
                                     <asp:LinkButton runat="server" CommandName="Delete"
                                         CommandArgument='<%# Eval("QuestionID") %>'
                                         CssClass="btn btn-sm btn-danger"
-                                        OnClientClick="return confirm('Delete this question?');">🗑</asp:LinkButton>
+                                        OnClientClick="return confirm('Delete this question?');"></asp:LinkButton>
                                 </div>
                                 <div class="question-item-body">
                                     <p style="font-weight:600;font-size:.9rem;margin-bottom:.6rem;">
@@ -163,7 +163,7 @@
                             <asp:Panel ID="pnlNoQ" runat="server"
                                 Visible='<%# CInt(rptQuestions.Items.Count) = 0 %>'>
                                 <div class="empty-state" style="padding:2rem 1rem;">
-                                    <div class="empty-icon">❓</div>
+                                    <div class="empty-icon"></div>
                                     <h3>No Questions Yet</h3>
                                     <p>Add your first question on the left.</p>
                                 </div>
@@ -177,3 +177,4 @@
     </div>
 </div>
 </asp:Content>
+

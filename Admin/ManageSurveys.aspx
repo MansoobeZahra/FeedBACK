@@ -1,4 +1,4 @@
-<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
+﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
     CodeFile="ManageSurveys.aspx.vb" Inherits="Admin_ManageSurveys" %>
 
 <asp:Content ContentPlaceHolderID="PageTitle" runat="server">Manage Surveys</asp:Content>
@@ -11,12 +11,12 @@
     </div>
 
     <asp:Panel ID="pnlMsg" runat="server" Visible="false">
-        <div class="alert alert-success">✔ <asp:Literal ID="litMsg" runat="server" /></div>
+        <div class="alert alert-success">(Done) <asp:Literal ID="litMsg" runat="server" /></div>
     </asp:Panel>
 
     <div class="card">
         <div class="card-header">
-            <h2><span class="icon red">📋</span> All Surveys</h2>
+            <h2><span class="icon red"></span> All Surveys</h2>
         </div>
         <div class="card-body" style="padding:0;">
             <div class="table-wrapper">
@@ -38,7 +38,7 @@
                                     CommandName="ToggleAnon"
                                     CommandArgument='<%# Eval("SurveyID") & "|" & Eval("IsAnonymous") %>'
                                     CssClass='<%# If(CBool(Eval("IsAnonymous")), "btn btn-sm btn-primary", "btn btn-sm btn-outline") %>'>
-                                    <%# If(CBool(Eval("IsAnonymous")), "🔒 Yes", "👤 No") %>
+                                    <%# If(CBool(Eval("IsAnonymous")), " Yes", " No") %>
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -49,14 +49,14 @@
                                     CommandName="ToggleActive"
                                     CommandArgument='<%# Eval("SurveyID") & "|" & Eval("IsActive") %>'
                                     CssClass='<%# If(CBool(Eval("IsActive")), "btn btn-sm btn-success", "btn btn-sm btn-outline") %>'>
-                                    <%# If(CBool(Eval("IsActive")), "✅ Active", "⏸ Off") %>
+                                    <%# If(CBool(Eval("IsActive")), "(Active) Active", " Off") %>
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Results">
                             <ItemTemplate>
                                 <a href='../Results/SurveyResults.aspx?sid=<%# Eval("SurveyID") %>'
-                                   class="btn btn-sm btn-warning">📊</a>
+                                   class="btn btn-sm btn-warning"></a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -67,3 +67,4 @@
 
 </div>
 </asp:Content>
+

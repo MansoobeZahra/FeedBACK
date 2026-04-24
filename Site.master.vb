@@ -1,4 +1,4 @@
-Imports System.Web.UI
+﻿Imports System.Web.UI
 Imports System.Web.UI.HtmlControls
 
 Public Class Site
@@ -27,16 +27,16 @@ Public Class Site
         Dim sb As New System.Text.StringBuilder()
         Select Case role
             Case "Survey Administrator"
-                sb.Append("<a href='/Admin/Dashboard.aspx'><span>🏠</span><span>Dashboard</span></a>")
-                sb.Append("<a href='/Admin/ManageUsers.aspx'><span>👥</span><span>Users</span></a>")
-                sb.Append("<a href='/Admin/ManageSurveys.aspx'><span>📋</span><span>Surveys</span></a>")
-                sb.Append("<a href='/Results/SurveyResults.aspx'><span>📊</span><span>Results</span></a>")
+                sb.Append("<a href='/Admin/Dashboard.aspx'><span></span><span>Dashboard</span></a>")
+                sb.Append("<a href='/Admin/ManageUsers.aspx'><span></span><span>Users</span></a>")
+                sb.Append("<a href='/Admin/ManageSurveys.aspx'><span></span><span>Surveys</span></a>")
+                sb.Append("<a href='/Results/SurveyResults.aspx'><span></span><span>Results</span></a>")
             Case "Survey Builder"
-                sb.Append("<a href='/Builder/Dashboard.aspx'><span>🏠</span><span>Dashboard</span></a>")
-                sb.Append("<a href='/Builder/CreateSurvey.aspx'><span>➕</span><span>New Survey</span></a>")
-                sb.Append("<a href='/Results/SurveyResults.aspx'><span>📊</span><span>Results</span></a>")
+                sb.Append("<a href='/Builder/Dashboard.aspx'><span></span><span>Dashboard</span></a>")
+                sb.Append("<a href='/Builder/CreateSurvey.aspx'><span>+</span><span>New Survey</span></a>")
+                sb.Append("<a href='/Results/SurveyResults.aspx'><span></span><span>Results</span></a>")
             Case "Surveyor"
-                sb.Append("<a href='/Surveyor/Dashboard.aspx'><span>🏠</span><span>Dashboard</span></a>")
+                sb.Append("<a href='/Surveyor/Dashboard.aspx'><span></span><span>Dashboard</span></a>")
         End Select
         Return sb.ToString()
     End Function
@@ -47,3 +47,4 @@ Public Class Site
         Response.Redirect("~/Login.aspx")
     End Sub
 End Class
+

@@ -1,5 +1,5 @@
-/* =============================================
-   FeedBACK Survey App — Site Stylesheet
+﻿/* =============================================
+   FeedBACK Survey App - Site Stylesheet
    Palette: #ffffff | #F73B31 | #F29F41 | #2596be
    ============================================= */
 
@@ -700,3 +700,4 @@ input:checked + .toggle-slider::before { transform: translateX(20px); }
 @media (max-width: 480px) {
     .stats-grid { grid-template-columns: 1fr; }
 }
+
