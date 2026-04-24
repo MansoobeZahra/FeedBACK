@@ -31,7 +31,7 @@
                         <asp:BoundField DataField="ResponseCount" HeaderText="Responses" />
                         <asp:BoundField DataField="CreatedDate"   HeaderText="Created"
                             DataFormatString="{0:MMM dd, yyyy}" />
-                        <!-- Anonymous Toggle -->
+
                         <asp:TemplateField HeaderText="Anonymous">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lbAnon" runat="server"
@@ -42,7 +42,7 @@
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <!-- Active Toggle -->
+
                         <asp:TemplateField HeaderText="Active">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lbActive" runat="server"
