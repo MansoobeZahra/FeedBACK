@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -26,9 +26,10 @@ Public Class Admin_Dashboard
             Dim da As New SqlDataAdapter(cmd)
             Dim dt As New DataTable()
             da.Fill(dt)
-            ' Show only top 10
-            gvSurveys.DataSource = dt.AsEnumerable().Take(10).CopyToDataTable()
-            gvSurveys.DataBind()
+            If dt.Rows.Count > 0 Then
+                gvSurveys.DataSource = dt.AsEnumerable().Take(10).CopyToDataTable()
+                gvSurveys.DataBind()
+            End If
         End Using
     End Sub
 
