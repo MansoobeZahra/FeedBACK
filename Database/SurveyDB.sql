@@ -151,6 +151,65 @@ END
 GO
 
 -- =============================================
+-- SEED: DEMO SURVEY, QUESTIONS, AND RESPONSES
+-- =============================================
+IF NOT EXISTS (SELECT 1 FROM dbo.Surveys WHERE Title = 'Website Feedback Survey')
+BEGIN
+    -- 1. Create a Survey
+    INSERT INTO dbo.Surveys (Title, Description, CreatedBy, IsActive, IsAnonymous) 
+    VALUES ('Website Feedback Survey', 'Please let us know your thoughts about our new website design and features.', 2, 1, 0);
+
+    DECLARE @SurveyID INT = SCOPE_IDENTITY();
+
+    -- 2. Create Questions
+    INSERT INTO dbo.Questions (SurveyID, QuestionText, QuestionType, OrderNo)
+    VALUES 
+    (@SurveyID, 'How satisfied are you with the website navigation?', 'MCQ', 1),
+    (@SurveyID, 'The website loaded fast enough for my needs.', 'TrueFalse', 2),
+    (@SurveyID, 'How likely are you to recommend our platform?', 'MCQ', 3);
+
+    DECLARE @Q1 INT = (SELECT QuestionID FROM dbo.Questions WHERE SurveyID = @SurveyID AND OrderNo = 1);
+    DECLARE @Q2 INT = (SELECT QuestionID FROM dbo.Questions WHERE SurveyID = @SurveyID AND OrderNo = 2);
+    DECLARE @Q3 INT = (SELECT QuestionID FROM dbo.Questions WHERE SurveyID = @SurveyID AND OrderNo = 3);
+
+    -- 3. Create Options for Q1
+    INSERT INTO dbo.Options (QuestionID, OptionText, DisplayOrder) VALUES
+    (@Q1, 'Very Satisfied', 1),
+    (@Q1, 'Somewhat Satisfied', 2),
+    (@Q1, 'Neutral', 3),
+    (@Q1, 'Dissatisfied', 4);
+
+    -- 4. Create Options for Q2 (True/False)
+    INSERT INTO dbo.Options (QuestionID, OptionText, DisplayOrder) VALUES
+    (@Q2, 'True', 1),
+    (@Q2, 'False', 2);
+
+    -- 5. Create Options for Q3
+    INSERT INTO dbo.Options (QuestionID, OptionText, DisplayOrder) VALUES
+    (@Q3, 'Very Likely', 1),
+    (@Q3, 'Somewhat Likely', 2),
+    (@Q3, 'Not Likely', 3);
+
+    -- 6. Add some mock responses
+    -- Response 1 (From user 3 - Bob Surveyor)
+    INSERT INTO dbo.Responses (SurveyID, UserID) VALUES (@SurveyID, 3);
+    DECLARE @R1 INT = SCOPE_IDENTITY();
+    INSERT INTO dbo.ResponseAnswers (ResponseID, QuestionID, OptionID) VALUES
+    (@R1, @Q1, (SELECT OptionID FROM dbo.Options WHERE QuestionID = @Q1 AND DisplayOrder = 1)),
+    (@R1, @Q2, (SELECT OptionID FROM dbo.Options WHERE QuestionID = @Q2 AND DisplayOrder = 1)),
+    (@R1, @Q3, (SELECT OptionID FROM dbo.Options WHERE QuestionID = @Q3 AND DisplayOrder = 1));
+
+    -- Response 2 (Anonymous)
+    INSERT INTO dbo.Responses (SurveyID, UserID) VALUES (@SurveyID, NULL);
+    DECLARE @R2 INT = SCOPE_IDENTITY();
+    INSERT INTO dbo.ResponseAnswers (ResponseID, QuestionID, OptionID) VALUES
+    (@R2, @Q1, (SELECT OptionID FROM dbo.Options WHERE QuestionID = @Q1 AND DisplayOrder = 2)),
+    (@R2, @Q2, (SELECT OptionID FROM dbo.Options WHERE QuestionID = @Q2 AND DisplayOrder = 1)),
+    (@R2, @Q3, (SELECT OptionID FROM dbo.Options WHERE QuestionID = @Q3 AND DisplayOrder = 2));
+END
+GO
+
+-- =============================================
 -- STORED PROCEDURES
 -- =============================================
 
