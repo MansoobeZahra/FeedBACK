@@ -269,7 +269,8 @@ BEGIN
     INNER JOIN dbo.Options o ON o.QuestionID = q.QuestionID
     LEFT  JOIN dbo.ResponseAnswers ra ON ra.OptionID = o.OptionID
     WHERE  q.SurveyID = @SurveyID
-    GROUP BY q.QuestionID, q.QuestionText, q.QuestionType, o.OptionID, o.OptionText
+    GROUP BY q.QuestionID, q.QuestionText, q.QuestionType, q.OrderNo,
+             o.OptionID, o.OptionText, o.DisplayOrder
     ORDER BY q.OrderNo, o.DisplayOrder;
 END
 GO
