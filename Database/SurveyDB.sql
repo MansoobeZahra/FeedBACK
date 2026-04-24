@@ -16,10 +16,26 @@ USE SurveyDB;
 GO
 
 -- =============================================
+-- DROP TABLES in correct order (child → parent)
+-- =============================================
+IF OBJECT_ID('dbo.ResponseAnswers', 'U') IS NOT NULL DROP TABLE dbo.ResponseAnswers;
+GO
+IF OBJECT_ID('dbo.Responses',       'U') IS NOT NULL DROP TABLE dbo.Responses;
+GO
+IF OBJECT_ID('dbo.Options',         'U') IS NOT NULL DROP TABLE dbo.Options;
+GO
+IF OBJECT_ID('dbo.Questions',       'U') IS NOT NULL DROP TABLE dbo.Questions;
+GO
+IF OBJECT_ID('dbo.Surveys',         'U') IS NOT NULL DROP TABLE dbo.Surveys;
+GO
+IF OBJECT_ID('dbo.Users',           'U') IS NOT NULL DROP TABLE dbo.Users;
+GO
+IF OBJECT_ID('dbo.Roles',           'U') IS NOT NULL DROP TABLE dbo.Roles;
+GO
+
+-- =============================================
 -- ROLES TABLE
 -- =============================================
-IF OBJECT_ID('dbo.Roles', 'U') IS NOT NULL DROP TABLE dbo.Roles;
-GO
 CREATE TABLE dbo.Roles (
     RoleID   INT IDENTITY(1,1) PRIMARY KEY,
     RoleName NVARCHAR(50) NOT NULL UNIQUE
@@ -29,8 +45,6 @@ GO
 -- =============================================
 -- USERS TABLE
 -- =============================================
-IF OBJECT_ID('dbo.Users', 'U') IS NOT NULL DROP TABLE dbo.Users;
-GO
 CREATE TABLE dbo.Users (
     UserID       INT IDENTITY(1,1) PRIMARY KEY,
     Username     NVARCHAR(50)  NOT NULL UNIQUE,
@@ -47,8 +61,6 @@ GO
 -- =============================================
 -- SURVEYS TABLE
 -- =============================================
-IF OBJECT_ID('dbo.Surveys', 'U') IS NOT NULL DROP TABLE dbo.Surveys;
-GO
 CREATE TABLE dbo.Surveys (
     SurveyID    INT IDENTITY(1,1) PRIMARY KEY,
     Title       NVARCHAR(200) NOT NULL,
@@ -64,8 +76,6 @@ GO
 -- =============================================
 -- QUESTIONS TABLE
 -- =============================================
-IF OBJECT_ID('dbo.Questions', 'U') IS NOT NULL DROP TABLE dbo.Questions;
-GO
 CREATE TABLE dbo.Questions (
     QuestionID   INT IDENTITY(1,1) PRIMARY KEY,
     SurveyID     INT           NOT NULL,
@@ -79,8 +89,6 @@ GO
 -- =============================================
 -- OPTIONS TABLE
 -- =============================================
-IF OBJECT_ID('dbo.Options', 'U') IS NOT NULL DROP TABLE dbo.Options;
-GO
 CREATE TABLE dbo.Options (
     OptionID     INT IDENTITY(1,1) PRIMARY KEY,
     QuestionID   INT           NOT NULL,
@@ -93,8 +101,6 @@ GO
 -- =============================================
 -- RESPONSES TABLE
 -- =============================================
-IF OBJECT_ID('dbo.Responses', 'U') IS NOT NULL DROP TABLE dbo.Responses;
-GO
 CREATE TABLE dbo.Responses (
     ResponseID     INT IDENTITY(1,1) PRIMARY KEY,
     SurveyID       INT      NOT NULL,
@@ -108,8 +114,6 @@ GO
 -- =============================================
 -- RESPONSE ANSWERS TABLE
 -- =============================================
-IF OBJECT_ID('dbo.ResponseAnswers', 'U') IS NOT NULL DROP TABLE dbo.ResponseAnswers;
-GO
 CREATE TABLE dbo.ResponseAnswers (
     AnswerID   INT IDENTITY(1,1) PRIMARY KEY,
     ResponseID INT NOT NULL,
