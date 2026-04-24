@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -29,8 +29,8 @@ Public Class Admin_ManageSurveys
     Protected Sub gvSurveys_RowCommand(sender As Object, e As GridViewCommandEventArgs)
         Dim parts = e.CommandArgument.ToString().Split("|")
         Dim sid   As Integer = Integer.Parse(parts(0))
-        Dim cur   As Integer = Integer.Parse(parts(1))
-        Dim newVal As Integer = If(cur = 1, 0, 1)
+        Dim cur   As Boolean = Boolean.Parse(parts(1))
+        Dim newVal As Integer = If(cur, 0, 1)
 
         Dim col As String = If(e.CommandName = "ToggleAnon", "IsAnonymous", "IsActive")
 

@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -42,8 +42,8 @@ Public Class Admin_ManageUsers
         If e.CommandName = "ToggleStatus" Then
             Dim parts = e.CommandArgument.ToString().Split("|")
             Dim uid       As Integer = Integer.Parse(parts(0))
-            Dim curStatus As Integer = Integer.Parse(parts(1))
-            Dim newStatus As Integer = If(curStatus = 1, 0, 1)
+            Dim curStatus As Boolean = Boolean.Parse(parts(1))
+            Dim newStatus As Integer = If(curStatus, 0, 1)
 
             Dim connStr As String = ConfigurationManager.ConnectionStrings("SurveyDB").ConnectionString
             Using conn As New SqlConnection(connStr)
