@@ -1,6 +1,6 @@
 Imports System.Web.Security
 
-Public Class Global
+Public Class SurveyApplication
     Inherits System.Web.HttpApplication
 
     Sub Application_Start(sender As Object, e As EventArgs)
