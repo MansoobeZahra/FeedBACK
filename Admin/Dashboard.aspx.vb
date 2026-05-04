@@ -16,7 +16,7 @@ Public Class Admin_Dashboard
         Dim connStr As String = ConfigurationManager.ConnectionStrings("SurveyDB").ConnectionString
         Using conn As New SqlConnection(connStr)
             conn.Open()
-            litTotalUsers.Text     = GetScalar(conn, "SELECT COUNT(*) FROM Users")
+            litTotalUsers.Text     = GetScalar(conn, "SELECT COUNT(*) FROM UsersSurvey")
             litTotalSurveys.Text   = GetScalar(conn, "SELECT COUNT(*) FROM Surveys")
             litTotalResponses.Text = GetScalar(conn, "SELECT COUNT(*) FROM Responses")
             litActiveSurveys.Text  = GetScalar(conn, "SELECT COUNT(*) FROM Surveys WHERE IsActive=1")

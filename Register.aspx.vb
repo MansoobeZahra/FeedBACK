@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -21,7 +21,7 @@ Public Class Register
                 conn.Open()
                 ' Check duplicate username / email
                 Dim chkCmd As New SqlCommand(
-                    "SELECT COUNT(*) FROM Users WHERE Username=@u OR Email=@e", conn)
+                    "SELECT COUNT(*) FROM UsersSurvey WHERE Username=@u OR Email=@e", conn)
                 chkCmd.Parameters.AddWithValue("@u", txtUsername.Text.Trim())
                 chkCmd.Parameters.AddWithValue("@e", txtEmail.Text.Trim())
                 Dim dup As Integer = CInt(chkCmd.ExecuteScalar())
@@ -32,7 +32,7 @@ Public Class Register
                 End If
 
                 Dim insCmd As New SqlCommand(
-                    "INSERT INTO Users(Username,PasswordHash,FullName,Email,RoleID) VALUES(@u,@p,@f,@e,@r)", conn)
+                    "INSERT INTO UsersSurvey(Username,PasswordHash,FullName,Email,RoleID) VALUES(@u,@p,@f,@e,@r)", conn)
                 insCmd.Parameters.AddWithValue("@u", txtUsername.Text.Trim())
                 insCmd.Parameters.AddWithValue("@p", txtPassword.Text.Trim())
                 insCmd.Parameters.AddWithValue("@f", txtFullName.Text.Trim())

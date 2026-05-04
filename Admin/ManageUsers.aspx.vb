@@ -16,7 +16,7 @@ Public Class Admin_ManageUsers
         Dim connStr As String = ConfigurationManager.ConnectionStrings("SurveyDB").ConnectionString
         Using conn As New SqlConnection(connStr)
             Dim sql As String = "SELECT u.UserID, u.Username, u.FullName, u.Email, u.IsActive, u.CreatedDate, r.RoleName " &
-                                "FROM Users u INNER JOIN Roles r ON u.RoleID=r.RoleID "
+                                "FROM UsersSurvey u INNER JOIN Roles r ON u.RoleID=r.RoleID "
             If Not String.IsNullOrEmpty(filter) Then
                 sql &= "WHERE u.FullName LIKE @f OR u.Username LIKE @f "
             End If
@@ -47,7 +47,7 @@ Public Class Admin_ManageUsers
 
             Dim connStr As String = ConfigurationManager.ConnectionStrings("SurveyDB").ConnectionString
             Using conn As New SqlConnection(connStr)
-                Dim cmd As New SqlCommand("UPDATE Users SET IsActive=@s WHERE UserID=@u", conn)
+                Dim cmd As New SqlCommand("UPDATE UsersSurvey SET IsActive=@s WHERE UserID=@u", conn)
                 cmd.Parameters.AddWithValue("@s", newStatus)
                 cmd.Parameters.AddWithValue("@u", uid)
                 conn.Open()

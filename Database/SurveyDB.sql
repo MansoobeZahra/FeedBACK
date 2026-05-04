@@ -17,8 +17,7 @@ GO
 
 -- =============================================
 -- DROP TABLES in correct order (child → parent)
--- =============================================
-IF OBJECT_ID('dbo.ResponseAnswers', 'U') IS NOT NULL DROP TABLE dbo.ResponseAnswers;
+-- ============================================IF OBJECT_ID('dbo.ResponseAnswers', 'U') IS NOT NULL DROP TABLE dbo.ResponseAnswers;
 GO
 IF OBJECT_ID('dbo.Responses',       'U') IS NOT NULL DROP TABLE dbo.Responses;
 GO
@@ -28,7 +27,7 @@ IF OBJECT_ID('dbo.Questions',       'U') IS NOT NULL DROP TABLE dbo.Questions;
 GO
 IF OBJECT_ID('dbo.Surveys',         'U') IS NOT NULL DROP TABLE dbo.Surveys;
 GO
-IF OBJECT_ID('dbo.Users',           'U') IS NOT NULL DROP TABLE dbo.Users;
+IF OBJECT_ID('dbo.UsersSurvey',     'U') IS NOT NULL DROP TABLE dbo.UsersSurvey;
 GO
 IF OBJECT_ID('dbo.Roles',           'U') IS NOT NULL DROP TABLE dbo.Roles;
 GO
@@ -43,9 +42,9 @@ CREATE TABLE dbo.Roles (
 GO
 
 -- =============================================
--- USERS TABLE
+-- USERS SURVEY TABLE
 -- =============================================
-CREATE TABLE dbo.Users (
+CREATE TABLE dbo.UsersSurvey (
     UserID       INT IDENTITY(1,1) PRIMARY KEY,
     Username     NVARCHAR(50)  NOT NULL UNIQUE,
     PasswordHash NVARCHAR(256) NOT NULL,
@@ -54,7 +53,7 @@ CREATE TABLE dbo.Users (
     RoleID       INT           NOT NULL,
     IsActive     BIT           NOT NULL DEFAULT 1,
     CreatedDate  DATETIME      NOT NULL DEFAULT GETDATE(),
-    CONSTRAINT FK_Users_Roles FOREIGN KEY (RoleID) REFERENCES dbo.Roles(RoleID)
+    CONSTRAINT FK_UsersSurvey_Roles FOREIGN KEY (RoleID) REFERENCES dbo.Roles(RoleID)
 );
 GO
 
@@ -69,7 +68,7 @@ CREATE TABLE dbo.Surveys (
     CreatedDate DATETIME      NOT NULL DEFAULT GETDATE(),
     IsActive    BIT           NOT NULL DEFAULT 1,
     IsAnonymous BIT           NOT NULL DEFAULT 0,
-    CONSTRAINT FK_Surveys_Users FOREIGN KEY (CreatedBy) REFERENCES dbo.Users(UserID)
+    CONSTRAINT FK_Surveys_UsersSurvey FOREIGN KEY (CreatedBy) REFERENCES dbo.UsersSurvey(UserID)
 );
 GO
 
@@ -107,7 +106,7 @@ CREATE TABLE dbo.Responses (
     UserID         INT      NULL,  -- NULL when survey is anonymous
     SubmittedDate  DATETIME NOT NULL DEFAULT GETDATE(),
     CONSTRAINT FK_Responses_Surveys FOREIGN KEY (SurveyID) REFERENCES dbo.Surveys(SurveyID),
-    CONSTRAINT FK_Responses_Users   FOREIGN KEY (UserID)   REFERENCES dbo.Users(UserID)
+    CONSTRAINT FK_Responses_UsersSurvey FOREIGN KEY (UserID)   REFERENCES dbo.UsersSurvey(UserID)
 );
 GO
 
@@ -138,12 +137,12 @@ END
 GO
 
 -- =============================================
--- SEED: DEFAULT USERS  (password = "Admin@123" stored as plain for demo)
+-- SEED: DEFAULT USERS SURVEY (password = "Admin@123" stored as plain for demo)
 -- In production, use hashed passwords (SHA-256 etc.)
 -- =============================================
-IF NOT EXISTS (SELECT 1 FROM dbo.Users WHERE Username = 'admin')
+IF NOT EXISTS (SELECT 1 FROM dbo.UsersSurvey WHERE Username = 'admin')
 BEGIN
-    INSERT INTO dbo.Users (Username, PasswordHash, FullName, Email, RoleID) VALUES
+    INSERT INTO dbo.UsersSurvey (Username, PasswordHash, FullName, Email, RoleID) VALUES
     ('admin',   'Admin@123',   'System Administrator', 'admin@survey.com',   1),
     ('builder1','Builder@123', 'Alice Builder',         'alice@survey.com',   2),
     ('surveyor1','Survey@123', 'Bob Surveyor',          'bob@survey.com',     3);
@@ -223,7 +222,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT u.UserID, u.Username, u.FullName, u.Email, u.RoleID, r.RoleName
-    FROM   dbo.Users u
+    FROM   dbo.UsersSurvey u
     INNER JOIN dbo.Roles r ON u.RoleID = r.RoleID
     WHERE  u.Username     = @Username
       AND  u.PasswordHash = @Password
@@ -243,7 +242,7 @@ BEGIN
            (SELECT COUNT(*) FROM dbo.Questions q WHERE q.SurveyID = s.SurveyID) AS QuestionCount,
            (SELECT COUNT(*) FROM dbo.Responses r WHERE r.SurveyID = s.SurveyID) AS ResponseCount
     FROM   dbo.Surveys s
-    INNER JOIN dbo.Users u ON s.CreatedBy = u.UserID
+    INNER JOIN dbo.UsersSurvey u ON s.CreatedBy = u.UserID
     ORDER BY s.CreatedDate DESC;
 END
 GO
@@ -281,7 +280,7 @@ BEGIN
                             WHERE r.SurveyID = s.SurveyID AND r.UserID = @SurveyorID)
                 THEN 1 ELSE 0 END AS AlreadyTaken
     FROM   dbo.Surveys s
-    INNER JOIN dbo.Users u ON s.CreatedBy = u.UserID
+    INNER JOIN dbo.UsersSurvey u ON s.CreatedBy = u.UserID
     WHERE  s.IsActive = 1
     ORDER BY s.CreatedDate DESC;
 END
@@ -347,7 +346,7 @@ BEGIN
     SET NOCOUNT ON;
     SELECT u.UserID, u.Username, u.FullName, u.Email, u.IsActive, u.CreatedDate,
            r.RoleName
-    FROM   dbo.Users u
+    FROM   dbo.UsersSurvey u
     INNER JOIN dbo.Roles r ON u.RoleID = r.RoleID
     ORDER BY u.CreatedDate DESC;
 END
