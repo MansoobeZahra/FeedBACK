@@ -2,7 +2,7 @@ Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
-Public Class Builder_Dashboard
+Public Class BuilderDashboard
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -37,4 +37,5 @@ Public Class Builder_Dashboard
         Return New SqlCommand(sql, conn).ExecuteScalar().ToString()
     End Function
 End Class
+
 

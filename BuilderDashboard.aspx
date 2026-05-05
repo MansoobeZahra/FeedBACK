@@ -64,7 +64,7 @@
                                 <asp:TemplateField HeaderText="Actions">
                                     <ItemTemplate>
                                         <a href='ManageQuestions.aspx?sid=<%# Eval("SurveyID") %>' class="btn btn-sm btn-primary"> Questions</a>
-                                        <a href='<%# ResolveUrl("~/Results/SurveyResults.aspx?sid=" & Eval("SurveyID")) %>' class="btn btn-sm btn-warning" style="margin-left:.3rem;"> Results</a>
+                                        <a href='<%# ResolveUrl("~/SurveyResults.aspx?sid=" & Eval("SurveyID")) %>' class="btn btn-sm btn-warning" style="margin-left:.3rem;"> Results</a>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -76,3 +76,4 @@
     </form>
 </body>
 </html>
+

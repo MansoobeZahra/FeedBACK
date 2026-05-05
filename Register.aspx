@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeedBACK - Register</title>
-    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+    <link rel="stylesheet" href="Site.css" runat="server" />
 </head>
 <body>
 <form id="frmRegister" runat="server">
@@ -83,4 +83,5 @@
 </form>
 </body>
 </html>
+
 

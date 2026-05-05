@@ -1,4 +1,4 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="ManageSurveys.aspx.vb" Inherits="Admin_ManageSurveys" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="ManageSurveys.aspx.vb" Inherits="ManageSurveys" %>
 <%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeedBACK - Manage Surveys</title>
-    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+    <link rel="stylesheet" href="Site.css" runat="server" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -58,7 +58,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Results">
                                     <ItemTemplate>
-                                        <a href='<%# ResolveUrl("~/Results/SurveyResults.aspx?sid=" & Eval("SurveyID")) %>'
+                                        <a href='<%# ResolveUrl("~/SurveyResults.aspx?sid=" & Eval("SurveyID")) %>'
                                            class="btn btn-sm btn-warning"></a>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -71,3 +71,4 @@
     </form>
 </body>
 </html>
+

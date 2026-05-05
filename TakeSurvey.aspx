@@ -1,4 +1,4 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="TakeSurvey.aspx.vb" Inherits="Surveyor_TakeSurvey" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="TakeSurvey.aspx.vb" Inherits="TakeSurvey" %>
 <%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeedBACK - Take Survey</title>
-    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+    <link rel="stylesheet" href="Site.css" runat="server" />
     <style>
     .answer-option {
         display: flex;
@@ -114,3 +114,4 @@
     </script>
 </body>
 </html>
+

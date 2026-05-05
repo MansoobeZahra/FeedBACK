@@ -1,4 +1,4 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Dashboard.aspx.vb" Inherits="Surveyor_Dashboard" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Dashboard.aspx.vb" Inherits="Dashboard" %>
 <%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeedBACK - Available Surveys</title>
-    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+    <link rel="stylesheet" href="Site.css" runat="server" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="survey-card-footer">
                                 <%# If(CBool(Eval("AlreadyTaken")),
-                                    "<a href='" & ResolveUrl("~/Results/SurveyResults.aspx?sid=" & Eval("SurveyID")) & "' class='btn btn-sm btn-outline'> View Results</a>",
+                                    "<a href='" & ResolveUrl("~/SurveyResults.aspx?sid=" & Eval("SurveyID")) & "' class='btn btn-sm btn-outline'> View Results</a>",
                                     "<a href='TakeSurvey.aspx?sid=" & Eval("SurveyID") & "' class='btn btn-sm btn-danger'>Start Survey -></a>") %>
                             </div>
                         </div>
@@ -66,3 +66,4 @@
     </form>
 </body>
 </html>
+

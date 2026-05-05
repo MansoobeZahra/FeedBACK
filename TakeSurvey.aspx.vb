@@ -5,7 +5,7 @@ Imports System.Web.UI
 Imports System.Web.UI.HtmlControls
 Imports System.Web.UI.WebControls
 
-Public Class Surveyor_TakeSurvey
+Public Class TakeSurvey
     Inherits System.Web.UI.Page
 
     Private _surveyID As Integer = 0
@@ -189,4 +189,5 @@ Public Class Surveyor_TakeSurvey
         End Try
     End Sub
 End Class
+
 

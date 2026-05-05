@@ -1,4 +1,4 @@
-﻿Imports System.Web.Security
+Imports System.Web.Security
 
 Public Class Global_asax
     Inherits System.Web.HttpApplication
@@ -26,4 +26,5 @@ Public Class Global_asax
     End Sub
 
 End Class
+
 

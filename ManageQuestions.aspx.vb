@@ -1,8 +1,8 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
-Public Class Builder_ManageQuestions
+Public Class ManageQuestions
     Inherits System.Web.UI.Page
 
     Private _surveyID As Integer = 0
@@ -175,4 +175,5 @@ Public Class Builder_ManageQuestions
         End If
     End Sub
 End Class
+
 
