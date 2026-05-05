@@ -16,6 +16,10 @@
                 <h1>Create <span>Survey</span></h1>
                 <p>Define your survey title and basic settings.</p>
             </div>
+            <asp:Panel ID="pnlError" runat="server" Visible="false">
+                <div class="alert alert-danger"><asp:Literal ID="litError" runat="server" /></div>
+            </asp:Panel>
+
             <div class="card" style="max-width:600px;margin:0 auto;">
                 <div class="card-body">
                     <div class="form-group">
@@ -31,8 +35,8 @@
                     </div>
                     <div class="form-group">
                         <label class="checkbox-container">
-                            <asp:CheckBox ID="chkIsAnonymous" runat="server" Checked="true" />
-                            Enable Anonymous Mode (Respondents' identities will be hidden)
+                            <asp:CheckBox ID="chkActive" runat="server" Checked="true" />
+                            Enable Survey (Active)
                         </label>
                     </div>
                     <div style="display:flex;gap:.75rem;margin-top:1.5rem;">
