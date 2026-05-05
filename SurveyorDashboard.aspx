@@ -1,4 +1,4 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Dashboard.aspx.vb" Inherits="Dashboard" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="SurveyorDashboard.aspx.vb" Inherits="SurveyorDashboard" %>
 <%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
