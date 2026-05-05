@@ -1,180 +1,98 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
-    CodeFile="ManageQuestions.aspx.vb" Inherits="Builder_ManageQuestions" %>
-
-<asp:Content ContentPlaceHolderID="PageTitle" runat="server">Manage Questions</asp:Content>
-<asp:Content ContentPlaceHolderID="HeadContent" runat="server">
-<style>
-.q-type-card {
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-}
-.q-type-card:hover, .q-type-card.selected {
-    border-color: var(--blue);
-    background: rgba(37,150,190,.05);
-}
-.q-type-card .type-icon { font-size: 2rem; margin-bottom: .4rem; }
-.q-type-card .type-name { font-weight: 700; font-size: .9rem; }
-.options-area { display:none; }
-.options-area.show { display:block; }
-</style>
-</asp:Content>
-
-<asp:Content ContentPlaceHolderID="MainContent" runat="server">
-<div class="page-wrapper">
-
-    <!-- Header -->
-    <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-        <div>
-            <h1>Manage <span>Questions</span></h1>
-            <p id="surveyTitleP" runat="server">Loading survey</p>
-        </div>
-        <div style="display:flex;gap:.75rem;">
-            <a href="Dashboard.aspx" class="btn btn-outline"><- Back</a>
-            <a id="lnkResults" runat="server" href="#" class="btn btn-warning"> View Results</a>
-        </div>
-    </div>
-
-    <!-- Success/Error -->
-    <asp:Panel ID="pnlMsg" runat="server" Visible="false">
-        <div class="alert alert-success">(Done) <asp:Literal ID="litMsg" runat="server" /></div>
-    </asp:Panel>
-    <asp:Panel ID="pnlError" runat="server" Visible="false">
-        <div class="alert alert-danger"> <asp:Literal ID="litError" runat="server" /></div>
-    </asp:Panel>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;">
-
-        <!-- ===== ADD QUESTION FORM ===== -->
-        <div class="card">
-            <div class="card-header">
-                <h2><span class="icon blue">+</span> Add Question</h2>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="ManageQuestions.aspx.vb" Inherits="Builder_ManageQuestions" %>
+<%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FeedBACK - Manage Questions</title>
+    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <uc:Navbar ID="Navbar1" runat="server" />
+        <div class="page-wrapper">
+            <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <div>
+                    <h1 style="font-size:1.5rem;"><asp:Literal ID="litSurveyTitle" runat="server">Manage Survey</asp:Literal></h1>
+                    <p>Add, edit, or remove questions from this survey.</p>
+                </div>
+                <div style="display:flex;gap:.5rem;">
+                    <a href="Dashboard.aspx" class="btn btn-outline">Back to Dashboard</a>
+                </div>
             </div>
-            <div class="card-body">
 
-                <!-- Question Text -->
-                <div class="form-group">
-                    <label class="form-label">Question Statement <span style="color:var(--red)">*</span></label>
-                    <asp:TextBox ID="txtQuestion" runat="server" TextMode="MultiLine" Rows="3"
-                        CssClass="form-control" placeholder="Type your question here" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtQuestion"
-                        Display="Dynamic" CssClass="field-error" ErrorMessage="Question text required." />
-                </div>
+            <asp:Panel ID="pnlMsg" runat="server" Visible="false">
+                <div class="alert alert-success">(Done) <asp:Literal ID="litMsg" runat="server" /></div>
+            </asp:Panel>
 
-                <!-- Question Type -->
-                <div class="form-group">
-                    <label class="form-label">Question Type <span style="color:var(--red)">*</span></label>
-                    <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control"
-                        AutoPostBack="true" OnSelectedIndexChanged="ddlType_Changed">
-                        <asp:ListItem Value="">-- Select Type --</asp:ListItem>
-                        <asp:ListItem Value="MCQ">Multiple Choice (MCQ)</asp:ListItem>
-                        <asp:ListItem Value="TrueFalse">True / False</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlType"
-                        Display="Dynamic" CssClass="field-error" ErrorMessage="Please select a type." />
-                </div>
-
-                <!-- MCQ Options Panel -->
-                <asp:Panel ID="pnlMCQ" runat="server" Visible="false">
-                    <div style="background:rgba(37,150,190,.04);border-radius:var(--radius-sm);padding:1rem;border:1px dashed var(--border);">
-                        <label class="form-label">Answer Options (min 2)</label>
-                        <div class="form-group" style="margin-bottom:.6rem;">
-                            <asp:TextBox ID="txtOpt1" runat="server" CssClass="form-control" placeholder="Option A" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtOpt1"
-                                Display="Dynamic" CssClass="field-error" ErrorMessage="Option A required."
-                                Enabled="false" ID="rfvOpt1" />
-                        </div>
-                        <div class="form-group" style="margin-bottom:.6rem;">
-                            <asp:TextBox ID="txtOpt2" runat="server" CssClass="form-control" placeholder="Option B" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtOpt2"
-                                Display="Dynamic" CssClass="field-error" ErrorMessage="Option B required."
-                                Enabled="false" ID="rfvOpt2" />
-                        </div>
-                        <div class="form-group" style="margin-bottom:.6rem;">
-                            <asp:TextBox ID="txtOpt3" runat="server" CssClass="form-control" placeholder="Option C (optional)" />
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <asp:TextBox ID="txtOpt4" runat="server" CssClass="form-control" placeholder="Option D (optional)" />
-                        </div>
+            <div style="display:grid;grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: start;">
+                <!-- Existing Questions -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon red"></span> Survey Questions</h2>
                     </div>
-                </asp:Panel>
-
-                <!-- True/False info -->
-                <asp:Panel ID="pnlTF" runat="server" Visible="false">
-                    <div class="alert alert-info">
-                         True / False options will be added automatically.
-                    </div>
-                </asp:Panel>
-
-                <asp:Button ID="btnAddQuestion" runat="server" Text="Add Question +"
-                    CssClass="btn btn-danger btn-full" style="margin-top:1rem;"
-                    OnClick="btnAddQuestion_Click" />
-            </div>
-        </div>
-
-        <!-- ===== EXISTING QUESTIONS LIST ===== -->
-        <div>
-            <div class="card">
-                <div class="card-header">
-                    <h2><span class="icon orange"></span> Questions
-                        <span class="badge badge-blue" style="margin-left:.5rem;">
-                            <asp:Literal ID="litQCount" runat="server">0</asp:Literal>
-                        </span>
-                    </h2>
-                </div>
-                <div class="card-body" style="padding:.75rem;">
-                    <asp:Repeater ID="rptQuestions" runat="server"
-                        OnItemCommand="rptQuestions_ItemCommand">
-                        <ItemTemplate>
-                            <div class="question-item">
-                                <div class="question-item-header">
-                                    <div style="display:flex;align-items:center;gap:.6rem;">
-                                        <div class="question-number"><%# Container.ItemIndex + 1 %></div>
-                                        <span class="badge <%# If(Eval("QuestionType").ToString()="MCQ","badge-blue","badge-orange") %>">
-                                            <%# If(Eval("QuestionType").ToString()="MCQ","MCQ","True/False") %>
-                                        </span>
-                                    </div>
-                                    <asp:LinkButton runat="server" CommandName="Delete"
-                                        CommandArgument='<%# Eval("QuestionID") %>'
-                                        CssClass="btn btn-sm btn-danger"
-                                        OnClientClick="return confirm('Delete this question?');"></asp:LinkButton>
-                                </div>
-                                <div class="question-item-body">
-                                    <p style="font-weight:600;font-size:.9rem;margin-bottom:.6rem;">
-                                        <%# Server.HtmlEncode(Eval("QuestionText").ToString()) %>
-                                    </p>
-                                    <!-- Options sub-list via nested repeater placeholder -->
-                                    <asp:Repeater ID="rptOptions" runat="server"
-                                        DataSource='<%# GetOptions(CInt(Eval("QuestionID"))) %>'>
-                                        <ItemTemplate>
-                                            <div class="option-row">
-                                                <div class="option-bullet"></div>
-                                                <span style="font-size:.83rem;color:#444;"><%# Server.HtmlEncode(Eval("OptionText").ToString()) %></span>
+                    <div class="card-body" style="padding:0;">
+                        <asp:Repeater ID="rptQuestions" runat="server" OnItemCommand="rptQuestions_ItemCommand">
+                            <HeaderTemplate><div class="question-list"></HeaderTemplate>
+                            <ItemTemplate>
+                                <div class="question-item" style="padding:1.25rem; border-bottom:1px solid var(--border);">
+                                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                                        <div style="flex:1;">
+                                            <div style="font-size:.8rem;color:var(--muted);margin-bottom:.25rem;">
+                                                Question <%# Container.ItemIndex + 1 %> • <%# Eval("QuestionType") %>
                                             </div>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
+                                            <div style="font-weight:600;color:var(--dark);"><%# Eval("QuestionText") %></div>
+                                        </div>
+                                        <asp:LinkButton ID="btnDel" runat="server" CommandName="DeleteQ" CommandArgument='<%# Eval("QuestionID") %>'
+                                            CssClass="btn btn-sm btn-outline" style="color:var(--red);border-color:var(--red);"
+                                            OnClientClick="return confirm('Delete this question?');">Delete</asp:LinkButton>
+                                    </div>
                                 </div>
-                            </div>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Panel ID="pnlNoQ" runat="server"
-                                Visible='<%# CInt(rptQuestions.Items.Count) = 0 %>'>
-                                <div class="empty-state" style="padding:2rem 1rem;">
-                                    <div class="empty-icon"></div>
-                                    <h3>No Questions Yet</h3>
-                                    <p>Add your first question on the left.</p>
-                                </div>
-                            </asp:Panel>
-                        </FooterTemplate>
-                    </asp:Repeater>
+                            </ItemTemplate>
+                            <FooterTemplate></div></FooterTemplate>
+                        </asp:Repeater>
+                        <asp:Panel ID="pnlNoQs" runat="server" Visible="false" style="padding:3rem 1rem;text-align:center;">
+                            <p style="color:var(--muted);">No questions added yet.</p>
+                        </asp:Panel>
+                    </div>
+                </div>
+
+                <!-- Add Question Form -->
+                <div class="card" style="position:sticky;top:2rem;">
+                    <div class="card-header">
+                        <h2><span class="icon blue"></span> Add Question</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Question Text</label>
+                            <asp:TextBox ID="txtQText" runat="server" CssClass="form-control" placeholder="What would you like to ask?" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtQText" ValidationGroup="addQ"
+                                Display="Dynamic" CssClass="field-error" ErrorMessage="Question text is required." />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Question Type</label>
+                            <asp:DropDownList ID="ddlQType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlQType_SelectedIndexChanged">
+                                <asp:ListItem Value="Rating">Star Rating (1-5)</asp:ListItem>
+                                <asp:ListItem Value="Text">Open Text / Feedback</asp:ListItem>
+                                <asp:ListItem Value="Choice">Multiple Choice</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <!-- Options for Multiple Choice -->
+                        <asp:Panel ID="pnlOptions" runat="server" Visible="false" style="margin-top:1rem;padding:1rem;background:#f8f9fa;border-radius:var(--radius);">
+                            <label class="form-label" style="font-size:.8rem;">Choice Options (One per line)</label>
+                            <asp:TextBox ID="txtOptions" runat="server" TextMode="MultiLine" Rows="4" CssClass="form-control"
+                                placeholder="Yes&#10;No&#10;Maybe" />
+                            <p style="font-size:.7rem;color:var(--muted);margin-top:.4rem;">Enter each option on a new line.</p>
+                        </asp:Panel>
+
+                        <asp:Button ID="btnAddQ" runat="server" Text="Add Question" CssClass="btn btn-primary btn-full"
+                            style="margin-top:1.5rem;" OnClick="btnAddQ_Click" ValidationGroup="addQ" />
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
-</div>
-</asp:Content>
-
+    </form>
+</body>
+</html>

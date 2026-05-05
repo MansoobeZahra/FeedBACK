@@ -1,8 +1,5 @@
-Imports System.Web.UI
-Imports System.Web.UI.HtmlControls
-
-Public Class Site
-    Inherits MasterPage
+Public Class Navbar
+    Inherits System.Web.UI.UserControl
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Session("UserID") IsNot Nothing Then
@@ -45,4 +42,3 @@ Public Class Site
         Response.Redirect("~/Login.aspx")
     End Sub
 End Class
-

@@ -1,55 +1,48 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false"
-    CodeFile="CreateSurvey.aspx.vb" Inherits="Builder_CreateSurvey" %>
-
-<asp:Content ContentPlaceHolderID="PageTitle" runat="server">Create Survey</asp:Content>
-<asp:Content ContentPlaceHolderID="MainContent" runat="server">
-<div class="page-wrapper" style="max-width:720px;">
-
-    <div class="page-header">
-        <h1>Create New <span>Survey</span></h1>
-        <p>Fill in the survey details below, then add your questions.</p>
-    </div>
-
-    <asp:Panel ID="pnlError" runat="server" Visible="false">
-        <div class="alert alert-danger"> <asp:Literal ID="litError" runat="server" /></div>
-    </asp:Panel>
-
-    <div class="card">
-        <div class="card-header">
-            <h2><span class="icon red"></span> Survey Details</h2>
-        </div>
-        <div class="card-body">
-
-            <div class="form-group">
-                <label class="form-label">Survey Title <span style="color:var(--red)">*</span></label>
-                <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control"
-                    placeholder="e.g. Customer Satisfaction Survey 2026" MaxLength="200" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtTitle"
-                    Display="Dynamic" CssClass="field-error" ErrorMessage="Title is required." />
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="CreateSurvey.aspx.vb" Inherits="Builder_CreateSurvey" %>
+<%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FeedBACK - Create Survey</title>
+    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <uc:Navbar ID="Navbar1" runat="server" />
+        <div class="page-wrapper">
+            <div class="page-header">
+                <h1>Create <span>Survey</span></h1>
+                <p>Define your survey title and basic settings.</p>
             </div>
-
-            <div class="form-group">
-                <label class="form-label">Description</label>
-                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"
-                    CssClass="form-control" placeholder="Brief description of this survey"
-                    Rows="3" MaxLength="500" />
-            </div>
-
-            <div class="form-group">
-                <div class="form-check">
-                    <asp:CheckBox ID="chkActive" runat="server" Checked="true" />
-                    <label class="form-label" style="margin:0;cursor:pointer;">Make survey active immediately</label>
+            <div class="card" style="max-width:600px;margin:0 auto;">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label">Survey Title</label>
+                        <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" placeholder="Enter survey title..." />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtTitle"
+                            Display="Dynamic" CssClass="field-error" ErrorMessage="Title is required." />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description (Optional)</label>
+                        <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control"
+                            TextMode="MultiLine" Rows="3" placeholder="Briefly describe what this survey is about..." />
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <asp:CheckBox ID="chkIsAnonymous" runat="server" Checked="true" />
+                            Enable Anonymous Mode (Respondents' identities will be hidden)
+                        </label>
+                    </div>
+                    <div style="display:flex;gap:.75rem;margin-top:1.5rem;">
+                        <asp:Button ID="btnCreate" runat="server" Text="Create Survey & Add Questions ->"
+                            CssClass="btn btn-danger" OnClick="btnCreate_Click" />
+                        <a href="Dashboard.aspx" class="btn btn-outline">Cancel</a>
+                    </div>
                 </div>
             </div>
-
-            <div style="display:flex;gap:1rem;margin-top:1.5rem;">
-                <asp:Button ID="btnCreate" runat="server" Text="Create Survey &amp; Add Questions ->"
-                    CssClass="btn btn-danger btn-lg" OnClick="btnCreate_Click" />
-                <a href="Dashboard.aspx" class="btn btn-outline btn-lg">Cancel</a>
-            </div>
         </div>
-    </div>
-
-</div>
-</asp:Content>
-
+    </form>
+</body>
+</html>
