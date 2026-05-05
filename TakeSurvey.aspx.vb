@@ -17,7 +17,7 @@ Public Class TakeSurvey
         End If
 
         If Not Integer.TryParse(Request.QueryString("sid"), _surveyID) OrElse _surveyID = 0 Then
-            Response.Redirect("Dashboard.aspx")
+            Response.Redirect("SurveyorDashboard.aspx")
         End If
 
         If Not IsPostBack Then
@@ -182,7 +182,7 @@ Public Class TakeSurvey
                 Next
             End Using
 
-            Response.Redirect("Dashboard.aspx?done=1")
+            Response.Redirect("SurveyorDashboard.aspx?done=1")
         Catch ex As Exception
             pnlError.Visible = True
             litError.Text = "Error submitting survey: " & ex.Message

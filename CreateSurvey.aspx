@@ -38,7 +38,7 @@
                     <div style="display:flex;gap:.75rem;margin-top:1.5rem;">
                         <asp:Button ID="btnCreate" runat="server" Text="Create Survey & Add Questions ->"
                             CssClass="btn btn-danger" OnClick="btnCreate_Click" />
-                        <a href="Dashboard.aspx" class="btn btn-outline">Cancel</a>
+                        <a href="BuilderDashboard.aspx" class="btn btn-outline">Cancel</a>
                     </div>
                 </div>
             </div>

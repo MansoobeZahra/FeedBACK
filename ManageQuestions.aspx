@@ -18,7 +18,7 @@
                     <p>Add, edit, or remove questions from this survey.</p>
                 </div>
                 <div style="display:flex;gap:.5rem;">
-                    <a href="Dashboard.aspx" class="btn btn-outline">Back to Dashboard</a>
+                    <a href="BuilderDashboard.aspx" class="btn btn-outline">Back to Dashboard</a>
                 </div>
             </div>
 

@@ -75,7 +75,7 @@
                         <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:.5rem;">Already Submitted</h3>
                         <p style="color:var(--muted);margin-bottom:1.5rem;">You have already completed this survey.</p>
                         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-                            <a href="Dashboard.aspx" class="btn btn-outline"><- Back to Surveys</a>
+                            <a href="SurveyorDashboard.aspx" class="btn btn-outline"><- Back to Surveys</a>
                             <a id="lnkResults2" runat="server" href="#" class="btn btn-warning"> View Results</a>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         CssClass="btn btn-danger btn-lg"
                         OnClick="btnSubmit_Click"
                         OnClientClick="return validateForm();" />
-                    <a href="Dashboard.aspx" class="btn btn-outline btn-lg">Cancel</a>
+                    <a href="SurveyorDashboard.aspx" class="btn btn-outline btn-lg">Cancel</a>
                 </div>
             </asp:Panel>
         </div>

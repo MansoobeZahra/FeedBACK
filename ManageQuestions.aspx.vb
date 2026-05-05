@@ -13,7 +13,7 @@ Public Class ManageQuestions
         End If
 
         If Not Integer.TryParse(Request.QueryString("sid"), _surveyID) OrElse _surveyID = 0 Then
-            Response.Redirect("Dashboard.aspx")
+            Response.Redirect("BuilderDashboard.aspx")
         End If
 
         If Not IsPostBack Then
