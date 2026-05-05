@@ -1,4 +1,4 @@
-<@ Control Language="VB" AutoEventWireup="false" CodeFile="Navbar.ascx.vb" Inherits="Navbar" %>
+<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Navbar.ascx.vb" Inherits="Navbar" %>
 <nav class="navbar">
     <a href="~/Default.aspx" runat="server" class="navbar-brand">
         <span class="brand-icon"></span>
