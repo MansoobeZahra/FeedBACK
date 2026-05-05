@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 Imports System.Configuration
 Imports System.Web.UI.HtmlControls
 
-Public Class Results_SurveyResults
+Public Class SurveyResults
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -180,5 +180,6 @@ Public Class Results_SurveyResults
         End Using
     End Sub
 End Class
+
 
 
