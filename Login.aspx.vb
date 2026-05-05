@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -6,7 +6,6 @@ Public Class Login
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        ' Already logged in -> redirect
         If Session("UserID") IsNot Nothing Then
             RedirectByRole(Session("RoleName").ToString())
         End If

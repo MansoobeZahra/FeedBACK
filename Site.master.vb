@@ -1,4 +1,4 @@
-﻿Imports System.Web.UI
+Imports System.Web.UI
 Imports System.Web.UI.HtmlControls
 
 Public Class Site
@@ -6,7 +6,6 @@ Public Class Site
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Session("UserID") IsNot Nothing Then
-            ' Show user info in navbar
             userBadge.Visible = True
             btnLogout.Visible = True
             Dim fullName As String = Session("FullName").ToString()
@@ -15,7 +14,6 @@ Public Class Site
             roleSpan.InnerText = roleName
             avatarDiv.InnerText = fullName.Substring(0, 1).ToUpper()
 
-            ' Build nav links by role
             navMenu.InnerHtml = BuildNav(roleName)
         Else
             userBadge.Visible = False

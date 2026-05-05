@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 
@@ -18,12 +18,10 @@ Public Class Builder_Dashboard
         Using conn As New SqlConnection(connStr)
             conn.Open()
 
-            ' Stats
             litMySurveys.Text   = GetScalar(conn, "SELECT COUNT(*) FROM Surveys WHERE CreatedBy=" & uid)
             litMyQuestions.Text = GetScalar(conn, "SELECT COUNT(*) FROM Questions q INNER JOIN Surveys s ON q.SurveyID=s.SurveyID WHERE s.CreatedBy=" & uid)
             litMyResponses.Text = GetScalar(conn, "SELECT COUNT(*) FROM Responses r INNER JOIN Surveys s ON r.SurveyID=s.SurveyID WHERE s.CreatedBy=" & uid)
 
-            ' Grid
             Dim cmd As New SqlCommand("sp_GetSurveysByBuilder", conn)
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Parameters.AddWithValue("@BuilderID", uid)
