@@ -1,4 +1,4 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Dashboard.aspx.vb" Inherits="Builder_Dashboard" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="BuilderDashboard.aspx.vb" Inherits="BuilderDashboard" %>
 <%@ Register TagPrefix="uc" TagName="Navbar" Src="~/Navbar.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeedBACK - Builder Dashboard</title>
-    <link rel="stylesheet" href="~/Styles/Site.css" runat="server" />
+    <link rel="stylesheet" href="Site.css" runat="server" />
 </head>
 <body>
     <form id="form1" runat="server">

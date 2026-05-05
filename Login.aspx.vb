@@ -49,11 +49,11 @@ Public Class Login
     Private Sub RedirectByRole(role As String)
         Select Case role
             Case "Survey Administrator"
-                Response.Redirect("~/Admin/Dashboard.aspx")
+                Response.Redirect("~/AdminDashboard.aspx")
             Case "Survey Builder"
-                Response.Redirect("~/Builder/Dashboard.aspx")
+                Response.Redirect("~/BuilderDashboard.aspx")
             Case "Surveyor"
-                Response.Redirect("~/Surveyor/Dashboard.aspx")
+                Response.Redirect("~/SurveyorDashboard.aspx")
             Case Else
                 Response.Redirect("~/Login.aspx")
         End Select

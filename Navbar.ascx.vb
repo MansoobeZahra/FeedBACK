@@ -22,16 +22,16 @@ Public Class Navbar
         Dim sb As New System.Text.StringBuilder()
         Select Case role
             Case "Survey Administrator"
-                sb.Append($"<a href='{ResolveUrl("~/Admin/Dashboard.aspx")}'><span></span><span>Dashboard</span></a>")
-                sb.Append($"<a href='{ResolveUrl("~/Admin/ManageUsers.aspx")}'><span></span><span>Users</span></a>")
-                sb.Append($"<a href='{ResolveUrl("~/Admin/ManageSurveys.aspx")}'><span></span><span>Surveys</span></a>")
-                sb.Append($"<a href='{ResolveUrl("~/Results/SurveyResults.aspx")}'><span></span><span>Results</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/AdminDashboard.aspx")}'><span></span><span>Dashboard</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/ManageUsers.aspx")}'><span></span><span>Users</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/ManageSurveys.aspx")}'><span></span><span>Surveys</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/SurveyResults.aspx")}'><span></span><span>Results</span></a>")
             Case "Survey Builder"
-                sb.Append($"<a href='{ResolveUrl("~/Builder/Dashboard.aspx")}'><span></span><span>Dashboard</span></a>")
-                sb.Append($"<a href='{ResolveUrl("~/Builder/CreateSurvey.aspx")}'><span>+</span><span>New Survey</span></a>")
-                sb.Append($"<a href='{ResolveUrl("~/Results/SurveyResults.aspx")}'><span></span><span>Results</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/BuilderDashboard.aspx")}'><span></span><span>Dashboard</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/CreateSurvey.aspx")}'><span>+</span><span>New Survey</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/SurveyResults.aspx")}'><span></span><span>Results</span></a>")
             Case "Surveyor"
-                sb.Append($"<a href='{ResolveUrl("~/Surveyor/Dashboard.aspx")}'><span></span><span>Dashboard</span></a>")
+                sb.Append($"<a href='{ResolveUrl("~/SurveyorDashboard.aspx")}'><span></span><span>Dashboard</span></a>")
         End Select
         Return sb.ToString()
     End Function
